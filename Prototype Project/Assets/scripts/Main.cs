@@ -23,9 +23,11 @@ public class Main : MonoBehaviour
     {
         rewardC = false;
         mode = false;
+        moves = 10;
     }
     public void swap()
     {
+        moves--;
         int temp = target1.GetComponent<grid>().type;
         target1.GetComponent<grid>().type = target2.GetComponent<grid>().type;
         target2.GetComponent<grid>().type = temp;
@@ -40,7 +42,12 @@ public class Main : MonoBehaviour
     || (target1.GetComponent<grid>().left != null ? target2.gameObject.name == target1.GetComponent<grid>().left.gameObject.name : false)
     || (target1.GetComponent<grid>().right != null ? target2.gameObject.name == target1.GetComponent<grid>().right.gameObject.name : false))
         {
-            swap();
+            if (moves > 0)
+            {
+
+
+                swap();
+            }
         }
         else
         {
@@ -49,6 +56,10 @@ public class Main : MonoBehaviour
         }
 
 
+    }
+    public void restart()
+    {
+        SceneManager.LoadScene(0);
     }
     public void betting()
     {
@@ -92,7 +103,7 @@ public class Main : MonoBehaviour
     public void Jack(int t)
     {
 
-        GameObject.Find(betBn).GetComponent<grid>().rewardT = 4;
+        GameObject.Find(betBn).GetComponent<grid>().rewardT = 3;
         GameObject.Find(betBn).GetComponent<grid>().type = t;
         clearBet();
 
@@ -133,6 +144,10 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moves <= 0)
+        {
+            SceneManager.LoadScene(1);
+        }
         if (Input.GetKeyDown("escape"))
         {
             Application.Quit();

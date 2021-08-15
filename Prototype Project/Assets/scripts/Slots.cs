@@ -28,16 +28,21 @@ public class Slots : MonoBehaviour
     }
     public void onRoll()
     {
-        float rand;
-
-
-        for (int i = 0; i < 3; i++)
+        if (GetComponent<Main>().score >= 2)
         {
-            rand = Random.Range(0, 100);
-            slotArr[i].sprite = (rand < 33 ? gem1 : rand > 33 && rand < 66 ? gem2 : gem3);
-            type[i] = (rand < 33 ? 1 : rand > 33 && rand < 66 ? 2 : 3);
+            GetComponent<Main>().score -= 2;
+
+            float rand;
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                rand = Random.Range(0, 100);
+                slotArr[i].sprite = (rand < 33 ? gem1 : rand > 33 && rand < 66 ? gem2 : gem3);
+                type[i] = (rand < 33 ? 1 : rand > 33 && rand < 66 ? 2 : 3);
+            }
+            reward();
         }
-        reward();
     }
 
     public void reward()

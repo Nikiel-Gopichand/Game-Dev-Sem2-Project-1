@@ -42,6 +42,24 @@ public class grid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rewardT == 2)
+        {
+            this.GetComponent<Image>().color = new Color( 205,127,50);
+        }
+        if (rewardT == 3)
+        {
+
+
+           this.GetComponent<Image>().color = new Color(255,215, 0);
+
+        }
+        if (rewardT == 1)
+        {
+
+
+            this.GetComponent<Image>().color = new Color(255,255,255);
+        }
+
         this.GetComponent<Image>().sprite = (type == 0 ? im0 : type == 1 ? im1 : type == 2 ? im2 : im3);
 
         if (down != null)
